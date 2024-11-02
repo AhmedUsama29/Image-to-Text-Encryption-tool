@@ -1,3 +1,6 @@
+# pip install Pillow
+# pip install pytesseract
+
 import tkinter as tk
 from tkinter import font as tkFont
 
