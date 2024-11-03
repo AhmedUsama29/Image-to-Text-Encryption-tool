@@ -44,15 +44,15 @@ def open_encrypt_window():
     encrypted_text_box.pack(pady=10)
     encrypted_text_box.insert("1.0", "Encrypted text will appear here...")  # Optional placeholder text
 
-    # Exit Button
-    back_button = tk.Button(encrypt_window, text="Exit", command=encrypt_window.destroy, bg='#3d85c6', fg='white', font=('Times New Roman', 14))
-    back_button.pack(pady=20)
+    # # Exit Button
+    # back_button = tk.Button(encrypt_window, text="Exit", command=encrypt_window.destroy, bg='#3d85c6', fg='white', font=('Times New Roman', 14))
+    # back_button.pack(pady=20)
 
 # Function to open the Decrypt window
 def open_decrypt_window():
     decrypt_window = tk.Toplevel(root)
     decrypt_window.title("Decrypt")
-    decrypt_window.geometry("400x500")
+    decrypt_window.geometry("400x600")
     decrypt_window.configure(bg='black')
 
     # Large Textbox for encrypted text input
@@ -66,12 +66,34 @@ def open_decrypt_window():
     secret_key_entry_decrypt.insert(0, "Enter Secret Key for Decryption")
 
     # Decrypt Button
-    decrypt_button = tk.Button(decrypt_window, text="Decrypt", bg='#3d85c6', fg='white', font=('Times New Roman', 14))
+    decrypt_button = tk.Button(decrypt_window, text="Decrypt", bg='#3d85c6', fg='white', font=('Times New Roman', 14), command=lambda: display_decrypted_image(decrypt_window))
     decrypt_button.pack(pady=10)
 
-    # Exit Button for Decrypt window
-    back_button = tk.Button(decrypt_window, text="Exit", command=decrypt_window.destroy, bg='#3d85c6', fg='white', font=('Times New Roman', 14))
-    back_button.pack(pady=20)
+    # Label to show the decrypted image
+    global decrypted_image_label
+    decrypted_image_label = tk.Label(decrypt_window, bg='black')
+    decrypted_image_label.pack(pady=10)
+
+    # # Exit Button for Decrypt window
+    # back_button = tk.Button(decrypt_window, text="Exit", command=decrypt_window.destroy, bg='#3d85c6', fg='white', font=('Times New Roman', 14))
+    # back_button.pack(pady=20)
+
+# Function to display decrypted image (placeholder for actual decryption logic)
+def display_decrypted_image(window):
+    # Placeholder image path for demonstration; replace with decrypted image path
+    decrypted_image_path = chosen_image_path  # Replace with the path of the actual decrypted image
+    
+    if decrypted_image_path:
+        # Load and resize the image to fit within the label
+        image = Image.open(decrypted_image_path)
+        image = image.resize((200, 200), Image.ANTIALIAS)
+        photo = ImageTk.PhotoImage(image)
+
+        # Update the label with the decrypted image
+        decrypted_image_label.config(image=photo)
+        decrypted_image_label.image = photo  # Keep a reference to prevent garbage collection
+    else:
+        decrypted_image_label.config(text="No decrypted image to display")
 
 # Create the main application window
 root = tk.Tk()
