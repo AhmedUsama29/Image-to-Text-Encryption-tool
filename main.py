@@ -18,7 +18,7 @@ def choose_image():
 def open_encrypt_window():
     encrypt_window = tk.Toplevel(root)
     encrypt_window.title("Encrypt")
-    encrypt_window.geometry("800x500")
+    encrypt_window.geometry("400x500")
     encrypt_window.configure(bg='black')
 
     # Choose Image Button
@@ -52,8 +52,22 @@ def open_encrypt_window():
 def open_decrypt_window():
     decrypt_window = tk.Toplevel(root)
     decrypt_window.title("Decrypt")
-    decrypt_window.geometry("400x300")
+    decrypt_window.geometry("400x500")
     decrypt_window.configure(bg='black')
+
+    # Large Textbox for encrypted text input
+    encrypted_text_input = tk.Text(decrypt_window, wrap="word", width=40, height=10, font=("Arial", 12))
+    encrypted_text_input.pack(pady=10)
+    encrypted_text_input.insert("1.0", "Paste encrypted text here...")  # Optional placeholder text
+
+    # Secret Key Entry for decryption
+    secret_key_entry_decrypt = tk.Entry(decrypt_window, width=30, font=('Times New Roman', 14))
+    secret_key_entry_decrypt.pack(pady=10)
+    secret_key_entry_decrypt.insert(0, "Enter Secret Key for Decryption")
+
+    # Decrypt Button
+    decrypt_button = tk.Button(decrypt_window, text="Decrypt", bg='#3d85c6', fg='white', font=('Times New Roman', 14))
+    decrypt_button.pack(pady=10)
 
     # Exit Button for Decrypt window
     back_button = tk.Button(decrypt_window, text="Exit", command=decrypt_window.destroy, bg='#3d85c6', fg='white', font=('Times New Roman', 14))
